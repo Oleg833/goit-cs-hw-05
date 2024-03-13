@@ -19,7 +19,6 @@ async def copy_file(src_path, dest_path):
             content = await src_file.read()
 
         target_file = target_dir / src_path.name
-        print(src_path.name)
         async with aiofiles.open(target_file, "wb") as dest_file:
             await dest_file.write(content)
     except Exception as e:

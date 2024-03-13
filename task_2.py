@@ -6,33 +6,6 @@ from functools import reduce
 from collections import defaultdict
 
 
-# def map_function(text):
-#     words = text.split()
-#     return [(word, 1) for word in words]
-
-
-# def shuffle_function(mapped_values):
-#     shuffled = defaultdict(list)
-#     for key, value in mapped_values:
-#         shuffled[key].append(value)
-#     return shuffled.items()
-
-
-# def reduce_function(shuffled_values):
-#     reduced = {}
-#     for key, values in shuffled_values:
-#         reduced[key] = sum(values)
-#     return reduced
-
-
-# # Виконання MapReduce
-# def map_reduce(text):
-#     mapped_values = map_function(text)
-#     shuffled_values = shuffle_function(mapped_values)
-#     reduced_values = reduce_function(shuffled_values)
-#     return reduced_values
-
-
 # Виконання MapReduce в одній функції
 # def map_reduce(text):
 #     # Крок Map: розбиття тексту на слова та створення пар (слово, 1)
@@ -52,6 +25,7 @@ from collections import defaultdict
 
 def map_reduce(text):
     words = text.split()
+    # Крок Map:  створення пар (слово, 1)
     mapped_words = map(lambda word: (word, 1), words)
     sorted_words = sorted(mapped_words)
     # reduced_words = reduce(
@@ -66,9 +40,11 @@ def map_reduce(text):
         else:
             reduced_words[val[0]] = 1
     # Вивести перші 10 елементів словника
-    for i, (word, count) in enumerate(reduced_words.items()):
+    i = 0
+    for word in reduced_words:
+        i += 1
         if i < 10:
-            print(word, count)
+            print(word, reduced_words[word])
         else:
             break
 
