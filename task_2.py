@@ -27,18 +27,18 @@ def map_reduce(text):
     words = text.split()
     # Крок Map:  створення пар (слово, 1)
     mapped_words = map(lambda word: (word, 1), words)
-    sorted_words = sorted(mapped_words)
+    sorted_mapped_words = sorted(mapped_words)
     # reduced_words = reduce(
-    #     lambda acc, val: acc.update({val[0]: acc.get(val[0], 0) + 1}) or acc,
+    #     lambda acc, word_val: acc.update({word_val[0]: acc.get(word_val[0], 0) + 1}) or acc,
     #     sorted_words,
     #     {},
     # )
     reduced_words = {}
-    for val in sorted_words:
-        if val[0] in reduced_words:
-            reduced_words[val[0]] += 1
+    for word_val in sorted_mapped_words:
+        if word_val[0] in reduced_words:
+            reduced_words[word_val[0]] += 1
         else:
-            reduced_words[val[0]] = 1
+            reduced_words[word_val[0]] = 1
     # Вивести перші 10 елементів словника
     i = 0
     for word in reduced_words:
